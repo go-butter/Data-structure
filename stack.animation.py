@@ -2,9 +2,8 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-# =========================
+
 # 데이터
-# =========================
 words = [
 "벚꽃","버터떡","두쫀쿠","중간고사","딸기라떼","카공",
 "말차","꽃구경","아아","벚꽃","핑크색","커피","벚꽃",
@@ -12,9 +11,8 @@ words = [
 "두쫀쿠","케이크","공부","케이크","꽃"
 ]
 
-# =========================
+
 # 설정
-# =========================
 WIDTH, HEIGHT = 800, 500
 FPS = 2
 MAX_STACK = 10
@@ -22,7 +20,7 @@ MAX_STACK = 10
 # 폰트
 font = ImageFont.truetype("C:/Windows/Fonts/malgun.ttf", 24)
 
-# ✅ AVI + XVID (가장 안정적)
+# AVI + XVID
 video = cv2.VideoWriter(
     "stack_animation.avi",
     cv2.VideoWriter_fourcc(*'XVID'),
@@ -32,9 +30,8 @@ video = cv2.VideoWriter(
 
 stack = []
 
-# =========================
+
 # 화면 그리기
-# =========================
 def draw_frame(text, stack):
     img = np.ones((HEIGHT, WIDTH, 3), dtype=np.uint8) * 255
     img_pil = Image.fromarray(img)
@@ -62,9 +59,8 @@ def draw_frame(text, stack):
 
     return np.array(img_pil)
 
-# =========================
+
 # 애니메이션
-# =========================
 for word in words:
     if len(stack) < MAX_STACK:
         stack.append(word)
@@ -79,4 +75,4 @@ if stack:
 
 video.release()
 
-print("✅ AVI 영상 생성 완료 (이 파일로 제출 가능)")
+print("AVI 영상 생성 완료")
