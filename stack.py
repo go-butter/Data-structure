@@ -65,3 +65,62 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+import time
+import os
+
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def clear_screen(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    def display(self, action=""):
+        self.clear_screen()
+        print(f"\n=== {action} ===\n")
+
+        print("STACK (위가 top)\n")
+        for item in reversed(self.items):
+            print(f"| {item} |")
+            print("-------")
+
+        if not self.items:
+            print("(empty)")
+
+        time.sleep(1)
+
+    def push(self, item):
+        self.items.append(item)
+        self.display(f"PUSH → {item}")
+
+    def pop(self):
+        if self.items:
+            item = self.items.pop()
+            self.display(f"POP → {item}")
+            return item
+        else:
+            self.display("POP 실패 (빈 스택)")
+
+    def top(self):
+        if self.items:
+            self.display(f"TOP → {self.items[-1]}")
+        else:
+            self.display("TOP 없음")
+
+
+stack = Stack()
+
+words = ["벚꽃", "카페", "라떼", "봄바람", "튤립"]
+
+for w in words:
+    stack.push(w)
+
+stack.top()
+
+stack.pop()
+stack.pop()
+
+stack.push("피크닉")
+
+stack.top()
