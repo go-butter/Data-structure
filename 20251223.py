@@ -5,11 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 # ── 설정 ──────────────────────────────────────────────────────────────
 WIDTH, HEIGHT = 1280, 720
 FPS = 30
-import os, sys
-if sys.platform == "win32":
-    FONT_PATH = "C:/Windows/Fonts/malgun.ttf"   # 맑은 고딕 (Windows 기본 한글 폰트)
-else:
-    FONT_PATH = "/usr/share/fonts/opentype/unifont/unifont.otf"  # Linux fallback
+FONT_PATH = "/usr/share/fonts/opentype/unifont/unifont.otf"  # Linux fallback
 OUTPUT_PATH = "20251223.mp4"
 
 # ── 색상 (BGR은 cv2용, RGB는 PIL용) ──────────────────────────────────
