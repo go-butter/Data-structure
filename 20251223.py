@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 WIDTH, HEIGHT = 1280, 720
 FPS = 30
 if sys.platform == "win32":
-    FONT_PATH = "C:/Windows/Fonts/malgun.ttf"   # 맑은 고딕 (Windows 기본 한글 폰트)
+    FONT_PATH = "C:/Windows/Fonts/malgun.ttf"   # Windows
 else:
     FONT_PATH = "/usr/share/fonts/opentype/unifont/unifont.otf"  # Linux fallback
 OUTPUT_PATH = "20251223.mp4"
