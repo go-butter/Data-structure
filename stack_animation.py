@@ -85,12 +85,12 @@ def update(i):
             val_top = temp_stack[-1] if temp_stack else "null"
             current_action = f'stack.top() -> "{val_top}"'
 
-    # ⭐ 텍스트 위치 (왼쪽으로 이동)
+    # 텍스트 위치 
     ax.text(1, 6, current_action,
             fontsize=26, fontweight='bold',
             ha='left', va='center', color='black')
 
-    # 스택 박스 (오른쪽 그대로 유지)
+    # 스택 박스 
     if steps[i][0] != "cover":
         box_x, box_width, box_height = 6.2, 3.0, 1.2
 
