@@ -18,31 +18,37 @@ all_words = [
     "두쫀쿠", "케이크", "공부", "케이크", "꽃"
 ]
 
-# 스택 시나리오
+# 스택 시나리오 
 steps = []
 temp_stack = []
 
 for i, word in enumerate(all_words):
+    # push
     steps.append(("push", word))
     temp_stack.append(word)
 
+    # pop 2번
     if i % 6 == 3 and len(temp_stack) >= 2:
         for _ in range(2):
             popped = temp_stack.pop()
             steps.append(("pop", popped))
 
+    # pop 3번
     if i % 10 == 5 and len(temp_stack) >= 3:
         for _ in range(3):
             popped = temp_stack.pop()
             steps.append(("pop", popped))
 
+    # 5개 초과 시 pop
     while len(temp_stack) > 5:
         popped = temp_stack.pop()
         steps.append(("pop", popped))
 
+    # top
     if len(temp_stack) >= 2:
         steps.append(("top", ""))
 
+# 마지막 비우기
 while temp_stack:
     popped = temp_stack.pop()
     steps.append(("pop", popped))
@@ -56,7 +62,7 @@ def update(i):
     ax.set_ylim(0, 12)
     ax.axis('off')
 
-    # 바깥 테두리 (파란색)
+    # 바깥 테두리
     border = plt.Rectangle((0.1, 0.5), 9.8, 11,
                            fill=False, edgecolor='#00B0F0', lw=4)
     ax.add_patch(border)
@@ -76,7 +82,7 @@ def update(i):
                 popped = temp_stack.pop()
             else:
                 popped = "null"
-            current_action = f'stack.pop("{popped}")'
+            current_action = f'stack.pop() -> "{popped}"'
 
         elif act == "top":
             val_top = temp_stack[-1] if temp_stack else "null"
@@ -86,7 +92,7 @@ def update(i):
     ax.text(0.5, 6, current_action,
             fontsize=26, fontweight='bold', color='black')
 
-    # 스택 박스 (검정)
+    # 스택 박스
     box_x, box_width, box_height = 6.2, 3.0, 1.2
 
     for idx, item in enumerate(temp_stack):
@@ -105,19 +111,17 @@ def update(i):
             fontsize=16, color='black'
         )
 
-
-
 # 애니메이션
 ani = animation.FuncAnimation(
     fig, update,
     frames=len(steps),
-    interval=600,
+    interval=800,   
     repeat=False
 )
 
-# mp4 저장
+# 저장 fps도 낮춤 
 writer = FFMpegWriter(fps=2)
-ani.save("stack_max5.mp4", writer=writer)
+ani.save("stack_animation.mp4", writer=writer)
 
 plt.tight_layout()
 plt.show()
