@@ -105,7 +105,7 @@ def update(i):
             fontsize=16, color='black'
         )
 
-# ⭐ 바닥선 코드 완전히 삭제됨
+
 
 # 애니메이션
 ani = animation.FuncAnimation(
